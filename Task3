@@ -1,0 +1,47 @@
+#Задача 20: В настольной игре Скрабл (Scrabble) каждая буква имеет определенную ценность...
+
+import re
+def isCyrillic(text):
+	return bool(re.search('[а-яА-Я]', text))
+points_en = {1:'AEIOULNSTR',
+      	2:'DG',
+      	3:'BCMP',
+      	4:'FHVWY',
+      	5:'K',
+      	8:'JZ',
+      	10:'QZ'}
+points_ru = {1:'АВЕИНОРСТ',
+      	2:'ДКЛМПУ',
+      	3:'БГЁЬЯ',
+      	4:'ЙЫ',
+      	5:'ЖЗХЦЧ',
+      	8:'ШЭЮ',
+      	10:'ФЩЪ'}
+text = input().upper()
+if isCyrillic(text):
+	print(sum([k for i in text for k, v in points_ru.items() if i in v]))
+else:
+	print(sum([k for i in text for k, v in points_en.items() if i in v]))
+	
+  #Задача 18.Требуется найти в массиве A[1..N] самый близкий по величине элемент к заданному числу X. Пользователь в первой строке вводит натуральное число N – количество элементов в массиве. В последующих строках записаны N целых чисел Ai. Последняя строка содержит число X
+
+a = sorted(list(map(int, input().split())))
+b = int(input())
+res = []
+for num, i in enumerate(a):
+    if i >= b:
+        if b - a[num - 1] > a[num] - b:
+            res.append(a[num])
+        else:
+            res.append(a[num - 1])       
+if res:
+    print(res[0])
+else:
+    print(max(a))
+    
+    #Задача 16. Требуется вычислить, сколько раз встречается некоторое число X в массиве A[1..N]. Пользователь в первой строке вводит натуральное число N – количество элементов в массиве. В последующихстроках записаны N целых чисел Ai. Последняя строка содержит число X
+
+n = int(input ())
+a = map(int, input().split())
+x = int(input ())
+print(sum(map(lambda z: int(z == x), a)))
